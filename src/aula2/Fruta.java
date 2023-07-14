@@ -17,7 +17,7 @@ public class Fruta {
         for(int i = 0;i< frutas.length;i++){
             System.out.printf("%s: ",frutas[i]);
             quantidadeFrutas[i] = scanner.nextInt();
-            if(quantidadeFrutas[i] >= 10){
+            if(quantidadeFrutas[i] > 10){
                 valorTotal += valorPromocao * quantidadeFrutas[i];
             }
             else {
@@ -25,7 +25,7 @@ public class Fruta {
             }
         }
 
-        System.out.printf("Valor total:%.2f",valorTotal);
+        System.out.printf("Valor total: %.2f",valorTotal);
 
 
     }
