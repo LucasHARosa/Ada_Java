@@ -24,7 +24,6 @@ public class Fruta {
                 valorTotal += valorNormal * quantidadeFrutas[i];
             }
         }
-
         System.out.printf("Valor total: %.2f",valorTotal);
 
 
