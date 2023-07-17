@@ -1,7 +1,7 @@
 package aula1;
 import java.util.Scanner;
 
-public class Fahrenheit_Celcius {
+public class Ex01_01 {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
