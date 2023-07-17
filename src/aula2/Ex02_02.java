@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Sort {
+public class Ex02_02 {
     public static void main(String[] args) {
 
         int[] numbers = {5, 4, 1, 2, 3};
