@@ -61,8 +61,8 @@ public class Ex05_01 {
     }
 
     public static void ehNegativo(double input) throws EhNegativoException {
-        if(input == 0){
-            throw new EhNegativoException("não é possivel realizar um pedido sem itens");
+        if(input < 0){
+            throw new EhNegativoException("Esse formato de número não é valido");
         }
     }
 }
