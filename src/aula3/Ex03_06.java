@@ -20,17 +20,23 @@ public class Ex03_06 {
 
         double semiperimetro = (lado1 + lado2 + lado3) / 2;
         double area = 0;
-        if(verificaTriangulo(lado1,lado2,lado3)){
-            area = Math.sqrt(semiperimetro * (semiperimetro - lado1) * (semiperimetro - lado2) * (semiperimetro - lado3));
+        try{
+            if(verificaTriangulo(lado1,lado2,lado3)){
+                area = Math.sqrt(semiperimetro * (semiperimetro - lado1) * (semiperimetro - lado2) * (semiperimetro - lado3));
+            }
+        } catch ( LadosInvalidosException e){
+            System.out.println(e.getMessage());
         }
-
 
         return area;
     }
-    public static boolean verificaTriangulo (double lado1, double lado2, double lado3){
+    public static boolean verificaTriangulo (double lado1, double lado2, double lado3) throws LadosInvalidosException {
         boolean condicao1 = lado1 > Math.abs(lado2 - lado3) && lado1 < lado2 + lado3;
         boolean condicao2 = lado2 > Math.abs(lado1 - lado3) && lado2 < lado1 + lado3;
         boolean condicao3 = lado3 > Math.abs(lado1 - lado2) && lado3 < lado1 + lado2;
+        if (!(lado1+lado2>lado3 && lado1+lado3>lado2 && lado2+lado3>lado1)){
+            throw new LadosInvalidosException("Não forma triangulo");
+        }
         return condicao1 && condicao2 && condicao3;
     }
 
