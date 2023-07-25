@@ -1,7 +1,7 @@
 package aula6;
 import java.util.HashMap;
 import java.util.Map;
-public class Ex06_04 {
+public class Ex06_04LMS {
     public static int numeroUnico( int[] input) {
 
         Map<Integer, Integer> occurrenceMap = new HashMap<>();

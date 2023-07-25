@@ -1,6 +1,6 @@
 package aula6;
 import java.util.Arrays;
-public class Ex06_05 {
+public class Ex06_05LMS {
     public static String avaliacao(double[] input) {
         Arrays.sort(input);
         int n = input.length/2;

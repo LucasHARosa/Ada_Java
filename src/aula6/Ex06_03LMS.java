@@ -1,6 +1,6 @@
 package aula6;
 
-public class Ex06_03 {
+public class Ex06_03LMS {
     public static int idadeEmDias( int[] input) {
         int anosDias = input[0]*365;
         int mesesDias = input[1]*30;
