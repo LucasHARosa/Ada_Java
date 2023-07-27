@@ -6,7 +6,7 @@ public class Ex01_01 {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Digite a temperatura em graus Fahrenheit: ");
+        System.out.print("Digite Ex07_LMS02 temperatura em graus Fahrenheit: ");
         double temperaturaFahrenheit = scanner.nextDouble();
 
         double temperaturaCelsius = 5 * ((temperaturaFahrenheit - 32) / 9);

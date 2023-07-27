@@ -13,7 +13,7 @@ public class Ex02_01 {
         double valorTotal=0;
 
 
-        System.out.println("Bem vindo a feira. Para cada fruta coloque a quantidade desejada");
+        System.out.println("Bem vindo Ex07_LMS02 feira. Para cada fruta coloque Ex07_LMS02 quantidade desejada");
         for(int i = 0;i< frutas.length;i++){
             System.out.printf("%s: ",frutas[i]);
             quantidadeFrutas[i] = scanner.nextInt();

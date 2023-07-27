@@ -52,7 +52,7 @@ public class Ex04_05 {
 
         for (int i = 0; i < input.length(); i++) {
             if (charFrequencyMap.get(input.charAt(i)) == 1) {
-                return i; // Retorna a posição do primeiro caractere único
+                return i; // Retorna Ex07_LMS02 posição do primeiro caractere único
             }
         }
 
