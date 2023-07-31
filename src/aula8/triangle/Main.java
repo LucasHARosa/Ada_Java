@@ -2,36 +2,29 @@ package aula8.triangle;
 import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
-        double a = 5;
-        double b = 10;
-        double c = 10;
+        double a = 50;
+        double b = 100;
+        double c = 80;
         System.out.printf("Triangulo a: %.2f, b: %.2f e c: %.2f %n",a,b,c);
-        System.out.println("Perimetro:");
-        System.out.println(Triangle.perimeter(a, b, c));
+        System.out.printf("Perimetro: %.2f %n",Triangle.perimeter(a, b, c));
 
-        System.out.println("Semi Perimetro:");
-        System.out.println(Triangle.semiperimeter(a, b, c) );
+        System.out.printf("Semi Perimetro: %.2f %n", Triangle.semiperimeter(a, b, c));
 
-        System.out.println("Area:");
-        System.out.println(Triangle.area(a, b, c) ) ;
+        System.out.printf("Area: %.2f %n",Triangle.area(a, b, c) );
 
-        System.out.println("Altura A:");
-        System.out.println(Triangle.height(a, Triangle.area(a, b, c)) );
+        System.out.printf("Altura A: %.2f %n",Triangle.height(a, Triangle.area(a, b, c)));
 
-        System.out.println("Altura B:");
-        System.out.println(Triangle.height(b, Triangle.area(a, b, c)) );
+        System.out.printf("Altura B: %.2f %n",Triangle.height(b, Triangle.area(a, b, c)) );
 
-        System.out.println("Altura C:");
-        System.out.println(Triangle.height(b, Triangle.area(a, b, c)) );
+        System.out.printf("Altura C: %.2f %n",Triangle.height(c, Triangle.area(a, b, c)) );
+
 
         System.out.println("Angulos:");
         System.out.println(Arrays.toString(Triangle.angles(a, b, c)));
 
-        System.out.println("Inradius:");
-        System.out.println(Triangle.inradius(a, b, c) );
+        System.out.printf("Inradius: %.2f %n", Triangle.inradius(a, b, c));
 
-        System.out.println("Circle radius:");
-        System.out.println(Triangle.circumradius(a, b, c) );
+        System.out.printf("Circle radius: %.2f %n",Triangle.circumradius(a, b, c));
 
         System.out.println("Medians:");
         System.out.println(Arrays.toString(Triangle.medians(a, b, c)));
