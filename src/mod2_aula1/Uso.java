@@ -35,7 +35,7 @@ public class Uso {
         System.out.println("ligar");
         lucas.ligar();
 
-        System.out.println("Apagando contato");
+        System.out.println("Apagando contato: ana");
         agenda.deletar(contato2);
 
 

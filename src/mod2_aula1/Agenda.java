@@ -1,7 +1,15 @@
 package mod2_aula1;
 
 public class Agenda {
-    Contato[] contatos;
+    public Contato[] contatos;
+
+    public Agenda() {
+    }
+
+    public Agenda(Contato[] contatos) {
+        this.contatos = contatos;
+    }
+
 
     public void deletar(Contato contato) {
 
@@ -40,8 +48,17 @@ public class Agenda {
     public void imprimirAgenda() {
         System.out.println();
         for (Contato c : contatos) {
-            System.out.println(c.nome);
+            c.detalhar();
         }
         System.out.println();
+    }
+
+    public void addContato(Contato novoContato) {
+        Contato[] novaLista = new Contato[contatos.length + 1];
+        for (int i = 0; i < contatos.length; i++) {
+            novaLista[i] = contatos[i];
+        }
+        novaLista[novaLista.length-1] = novoContato;
+        contatos = novaLista;
     }
 }
