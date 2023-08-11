@@ -14,11 +14,15 @@ public class Cliente {
         this.pedidos = new ArrayList<>();
     }
 
+    public void adicionarPedido(Pedido pedido) {
+        pedidos.add(pedido);
+    }
+
     public String listarPedidosAnteriores() {
         System.out.println("Pedidos anteriores de " + nome + ":");
         String allPedidos = new String();
         for (Pedido pedido : pedidos) {
-             allPedidos += pedido.toString();
+             allPedidos +=  pedido.toString() + "%n";
 
         }
         return allPedidos;
@@ -29,8 +33,13 @@ public class Cliente {
         return pedidos.get(pedidos.size()-1).toString();
     }
 
-    public void adicionarPedido(Pedido pedido) {
-        pedidos.add(pedido);
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
     }
 
 }

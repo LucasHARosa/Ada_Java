@@ -16,6 +16,7 @@ public class Pedido {
         this.restaurante = restaurante;
         this.cliente = cliente;
         this.pratos = new ArrayList<>();
+        calcularTotal();
     }
 
 
@@ -26,9 +27,21 @@ public class Pedido {
         }
     }
 
+    public void addPrato(Prato prato){
+        pratos.add(prato);
+        calcularTotal();
+    }
 
     public double getTotal() {
         return total;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
     @Override

@@ -1,4 +1,6 @@
 package mod2_aula5.restaurante.dominio;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Restaurante {
     private String nome;
@@ -31,8 +33,17 @@ public class Restaurante {
     public void listarPedidos() {
         System.out.println("Pedidos recebidos no restaurante " + nome + ":");
         for (Pedido pedido : pedidos) {
-            System.out.println("Pedido #" + pedido.getId() + ": " + pedido.getTotal() + " - Entregar em: " + pedido.getEnderecoEntrega());
+            System.out.println("Pedido #" + pedido.getId() + ": " + pedido.getTotal() + " - Entregar em: " + pedido.getCliente().getEndereco());
         }
     }
+
+    @Override
+    public String toString() {
+        return "Restaurante{" +
+                "nome='" + nome + '\'' +
+                ", endereco='" + endereco + '\'' +
+                '}';
+    }
+
 
 }
