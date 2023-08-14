@@ -3,12 +3,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
+    private static int contadorCliente = 0;
 
+    private int id;
     private String nome;
     private String endereco;
     private List<Pedido> pedidos;
 
     public Cliente(String nome, String endereco) {
+        this.id = contadorCliente++;
         this.nome = nome;
         this.endereco = endereco;
         this.pedidos = new ArrayList<>();

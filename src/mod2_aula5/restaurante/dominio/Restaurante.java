@@ -3,12 +3,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurante {
+    private static int contadorRestaurante = 0;
+
+    private int id;
     private String nome;
     private String endereco;
     private List<Prato> pratosDisponiveis;
     private List<Pedido> pedidos;
 
     public Restaurante(String nome, String endereco) {
+        this.id = contadorRestaurante++;
         this.nome = nome;
         this.endereco = endereco;
         this.pratosDisponiveis = new ArrayList<>();
@@ -20,10 +24,9 @@ public class Restaurante {
     }
 
     public void listarPratos() {
-        System.out.println("Pratos disponíveis no restaurante " + nome + ":");
-        for (Prato prato : pratosDisponiveis) {
-            System.out.println(prato.getNome() + " - R$" + prato.getPreco());
-        }
+
+
+
     }
 
     public void receberPedido(Pedido pedido) {
@@ -33,17 +36,35 @@ public class Restaurante {
     public void listarPedidos() {
         System.out.println("Pedidos recebidos no restaurante " + nome + ":");
         for (Pedido pedido : pedidos) {
-            System.out.println("Pedido #" + pedido.getId() + ": " + pedido.getTotal() + " - Entregar em: " + pedido.getCliente().getEndereco());
+            System.out.println("Pedido #" + pedido.getId() + ": R$ " + pedido.getTotal() + "; \npratos: "+ pedido.getPratos() +  "\nEntregar em: " + pedido.getCliente().getEndereco());
         }
+
+
+    }
+
+    public List<Prato> getPratosDisponiveis() {
+        return pratosDisponiveis;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
     public String toString() {
-        return "Restaurante{" +
-                "nome='" + nome + '\'' +
-                ", endereco='" + endereco + '\'' +
-                '}';
+        return "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", endereco='" + endereco;
     }
 
-
+    public String descricaoCompleta(){
+        return "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", endereco='" + endereco +
+                ", Pratos:" + pratosDisponiveis;
+    }
 }

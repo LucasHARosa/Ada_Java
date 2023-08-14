@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-    private static int contadorPedidos = 1;
+    private static int contadorPedidos = 0;
 
     private int id;
     private Restaurante restaurante;
@@ -42,6 +42,10 @@ public class Pedido {
 
     public Cliente getCliente() {
         return cliente;
+    }
+
+    public List<Prato> getPratos() {
+        return pratos;
     }
 
     @Override
