@@ -18,7 +18,7 @@ public class RestauranteRepository {
         listaRestaurante.add(restaurante);
     }
 
-    public Restaurante buscarRestaurante(int identificador){
+    public Restaurante selecionaRestaurante(int identificador){
         for (Restaurante restaurante : listaRestaurante){
             if(restaurante.getId() == identificador){
                 return restaurante;
@@ -27,6 +27,14 @@ public class RestauranteRepository {
         return null;
     }
 
+    public Prato selecionaPrato(int identificador, Restaurante restaurante){
+        for(Prato prato : restaurante.getPratosDisponiveis()){
+            if(prato.getId()==identificador){
+                return prato;
+            }
+        }
+        return null;
+    }
     public void addPedidosRestaurante(int identificador, Pedido pedido){
         Restaurante restaurante = buscarRestaurante(identificador);
         if (restaurante != null) {
@@ -49,6 +57,14 @@ public class RestauranteRepository {
         Restaurante restaurante = buscarRestaurante(identificador);
         if (restaurante != null) {
             return restaurante.getPratosDisponiveis();
+        }
+        return null;
+    }
+
+    public List<Pedido> getListaPedido(int identificador){
+        Restaurante restaurante = buscarRestaurante(identificador);
+        if (restaurante != null) {
+            return restaurante.getPedidos();
         }
         return null;
     }

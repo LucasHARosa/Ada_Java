@@ -18,12 +18,18 @@ public class RestauranteService {
         Restaurante restaurante = new Restaurante(nome, endereco);
         restauranteRepository.addRestaurante(restaurante);
     }
-
-    public List<Restaurante> buscaRestaurante(){
+    public Restaurante buscarRestaurante(int identificador){
+        return restauranteRepository.selecionaRestaurante(identificador);
+    }
+    public Prato buscarPrato(int identificadorPrato, int identificadorRestaurante ){
+        Restaurante restaurante = buscarRestaurante(identificadorRestaurante);
+        return restauranteRepository.selecionaPrato(identificadorPrato,restaurante);
+    }
+    public List<Restaurante> findAllRestaurantes(){
         return restauranteRepository.getListaRestaurante();
     }
 
-    public List<Prato> buscaPrato(int identificador){
+    public List<Prato> findAllPratos(int identificador){
         return restauranteRepository.getListaPrato(identificador);
     }
 

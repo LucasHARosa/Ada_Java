@@ -27,6 +27,10 @@ public class Prato {
         return descricao;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Prato{" +

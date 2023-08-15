@@ -21,21 +21,10 @@ public class Cliente {
         pedidos.add(pedido);
     }
 
-    public String listarPedidosAnteriores() {
-        System.out.println("Pedidos anteriores de " + nome + ":");
-        String allPedidos = new String();
-        for (Pedido pedido : pedidos) {
-             allPedidos +=  pedido.toString() + "%n";
 
-        }
-        return allPedidos;
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
-
-    public String listarPedidoAtual(){
-        System.out.println("Pedido atual de "+ nome + ":");
-        return pedidos.get(pedidos.size()-1).toString();
-    }
-
 
     public String getNome() {
         return nome;
@@ -45,4 +34,7 @@ public class Cliente {
         return endereco;
     }
 
+    public int getId() {
+        return id;
+    }
 }

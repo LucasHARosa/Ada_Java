@@ -23,24 +23,11 @@ public class Restaurante {
         pratosDisponiveis.add(prato);
     }
 
-    public void listarPratos() {
-
-
-
-    }
 
     public void receberPedido(Pedido pedido) {
         pedidos.add(pedido);
     }
 
-    public void listarPedidos() {
-        System.out.println("Pedidos recebidos no restaurante " + nome + ":");
-        for (Pedido pedido : pedidos) {
-            System.out.println("Pedido #" + pedido.getId() + ": R$ " + pedido.getTotal() + "; \npratos: "+ pedido.getPratos() +  "\nEntregar em: " + pedido.getCliente().getEndereco());
-        }
-
-
-    }
 
     public List<Prato> getPratosDisponiveis() {
         return pratosDisponiveis;
