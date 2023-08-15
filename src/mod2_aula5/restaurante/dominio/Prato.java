@@ -33,10 +33,9 @@ public class Prato {
 
     @Override
     public String toString() {
-        return "Prato{" +
-                "nome='" + nome + '\'' +
-                ", preco=" + preco +
-                ", descricao='" + descricao + '\'' +
-                '}';
+        return  "#"+id+ " ,"+
+                nome  +
+                ", preco= R$" + preco +
+                ", descricao= " + descricao;
     }
 }

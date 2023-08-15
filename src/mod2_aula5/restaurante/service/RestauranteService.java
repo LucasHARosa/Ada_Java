@@ -37,5 +37,14 @@ public class RestauranteService {
         Prato prato = new Prato(nome,preco, descricao);
         restauranteRepository.addPratosRestaurante(identificador,prato);
     }
+    public boolean validaRestaurante(int identificador){
+        Restaurante restaurante = restauranteRepository.selecionaRestaurante(identificador);
+        if(restaurante!= null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 }

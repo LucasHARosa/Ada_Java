@@ -1,9 +1,11 @@
 package mod2_aula5.restaurante.controller;
 
 import mod2_aula5.restaurante.dominio.Cliente;
+import mod2_aula5.restaurante.dominio.Pedido;
 import mod2_aula5.restaurante.dominio.Prato;
 import mod2_aula5.restaurante.dominio.Restaurante;
 import mod2_aula5.restaurante.service.ClienteService;
+import mod2_aula5.restaurante.service.PedidoService;
 import mod2_aula5.restaurante.service.RestauranteService;
 
 import java.util.List;
@@ -12,12 +14,14 @@ import java.util.Scanner;
 public class MenuController {
     private RestauranteService restauranteService;
     private ClienteService clienteService;
+    private PedidoService pedidoService;
 
     private Scanner scanner;
 
-    public MenuController(RestauranteService restauranteService, ClienteService clienteService) {
+    public MenuController(RestauranteService restauranteService, ClienteService clienteService, PedidoService pedidoService) {
         this.restauranteService = restauranteService;
         this.clienteService = clienteService;
+        this.pedidoService = pedidoService;
         this.scanner = new Scanner(System.in);
     }
     public void exibirMenu() {
@@ -92,7 +96,20 @@ public class MenuController {
         } else {
             for (Restaurante restaurante : restaurantes) {
                 System.out.print(restaurante.toString());
-                System.out.println();
+
+            }
+            System.out.println();
+        }
+    }
+
+    private void listarClientes(){
+        List<Cliente> clientes = clienteService.findAllClientes();
+        if(clientes.isEmpty()){
+            System.out.println("Nenhum restaurante cadastrado!");
+            System.out.println();
+        }else{
+            for (Cliente cliente: clientes){
+                System.out.print(cliente.toString());
             }
             System.out.println();
         }
@@ -104,16 +121,23 @@ public class MenuController {
         System.out.print("Identificador do Restaurante: ");
         int identificador = scanner.nextInt();
         scanner.nextLine();
-        System.out.print("Nome do Prato: ");
-        String nomePrato = scanner.nextLine();
-        System.out.print("Preço do Prato: ");
-        Double preco = scanner.nextDouble();
-        scanner.nextLine();
-        System.out.print("Descrição do Prato: ");
-        String descricao = scanner.nextLine();
-        restauranteService.adicionarPrato(identificador, nomePrato, preco, descricao);
-        System.out.println("Prato adicionado com sucesso!");
-        System.out.println();
+        if(restauranteService.validaRestaurante(identificador)){
+            System.out.print("Nome do Prato: ");
+            String nomePrato = scanner.nextLine();
+            System.out.print("Preço do Prato: ");
+            Double preco = scanner.nextDouble();
+            scanner.nextLine();
+            System.out.print("Descrição do Prato: ");
+            String descricao = scanner.nextLine();
+            restauranteService.adicionarPrato(identificador, nomePrato, preco, descricao);
+            System.out.println("Prato adicionado com sucesso!");
+            System.out.println();
+        }else{
+            System.out.print("Restaurante não encontrado!");
+            System.out.println();
+            scanner.nextLine();
+        }
+
     }
 
     private void listarPratosRestaurante() {
@@ -122,54 +146,8 @@ public class MenuController {
         System.out.print("Identificador do Restaurante: ");
         int identificador = scanner.nextInt();
         scanner.nextLine();
-        List<Prato> pratos = restauranteService.findAllPratos(identificador);
-        if (pratos == null || pratos.isEmpty()) {
-            System.out.println("Nenhum prato encontrado para o restaurante informado!");
-            System.out.println();
-        } else {
-            System.out.println("Pratos disponíveis no restaurante:");
-            for (Prato prato : pratos) {
-                System.out.println(prato.getNome() + ", R$" + prato.getPreco());
-            }
-        }
-    }
-
-    private void fazerPedido() {
-        System.out.print("Já existe um cliente para este pedido? (S/N): ");
-        String opcao = scanner.nextLine();
-        if (opcao.equalsIgnoreCase("S")) {
-            System.out.print("Selecione o cliente");
-            List<Cliente> clientes = clienteService.buscaCliente();
-            System.out.print("Identificador do Cliente: ");
-            Integer identificadorCliente = scanner.nextInt();
-            scanner.nextLine();
-
-            if (cliente == null) {
-                System.out.println("Cliente não encontrado!");
-                return;
-            }
-        } else {
-            System.out.print("Deseja cadastrar um novo cliente com este pedido? (S/N): ");
-            opcao = scanner.nextLine();
-            if (opcao.equalsIgnoreCase("S")) {
-                System.out.print("Nome do Cliente: ");
-                String nomeCliente = scanner.nextLine();
-                cliente = new Cliente(nomeCliente);
-                clienteRepository.adicionarCliente(cliente);
-                System.out.println("Cliente cadastrado com sucesso!");
-            } else {
-                return;
-            }
-        }
-        System.out.print("Selecione seu restaurante ");
-        listarRestaurantes();
-        System.out.print("Identificador do Restaurante: ");
-        int identificadorRestaurante = scanner.nextInt();
-        scanner.nextLine();
-        Restaurante restaurante = restauranteService.
-        List<Prato> pratos = restauranteService.buscaPrato(identificadorRestaurante);
-
-        while (true) {
+        if(restauranteService.validaRestaurante(identificador)){
+            List<Prato> pratos = restauranteService.findAllPratos(identificador);
             if (pratos == null || pratos.isEmpty()) {
                 System.out.println("Nenhum prato encontrado para o restaurante informado!");
                 System.out.println();
@@ -179,22 +157,103 @@ public class MenuController {
                     System.out.println(prato.getNome() + ", R$" + prato.getPreco());
                 }
             }
-            System.out.println("Selecione o numero do prato a ser adicionado");
-            System.out.println("0. Finalizar Pedido");
-            System.out.print("Escolha uma opção: ");
-            int opcaoPrato = scanner.nextInt();
+        }else{
+            System.out.print("Restaurante não encontrado!");
+            System.out.println();
             scanner.nextLine();
-            if (opcaoPrato > 0 && opcaoPrato < ) {
-
-            } else if (opcaoPrato == 0) {
-                break;
-            } else {
-                System.out.println("Opção inválida!");
-            }
         }
-        clienteService.fazerPedido(cliente.getIdentificador(), cliente.getNome(), identificadorRestaurante,
-                nomeRestaurante, pratos);
-        System.out.println("Pedido realizado com sucesso!");
+
+    }
+
+    private void fazerPedido() {
+        Cliente cliente = null;
+        System.out.print("Já existe um cliente para este pedido? (S/N): ");
+        String opcao = scanner.nextLine();
+        if (opcao.equalsIgnoreCase("S")) {
+            System.out.print("Selecione o cliente:");
+            System.out.print("0 Voltar");
+            listarClientes();
+            System.out.print("Identificador do Cliente: ");
+            int identificadorCliente = scanner.nextInt();
+            scanner.nextLine();
+             cliente = clienteService.buscarCliente(identificadorCliente);
+            if (cliente == null) {
+                System.out.println("Cliente não encontrado!");
+                return;
+            }
+        } else {
+            System.out.print("Cadastre um novo cliente para o pedido: ");
+            System.out.print("Nome do Cliente: ");
+            String nomeCliente = scanner.nextLine();
+            System.out.print("Endereço do Cliente: ");
+            String enderecoCliente= scanner.nextLine();
+            clienteService.addCliente(nomeCliente,enderecoCliente);
+            cliente = clienteService.ultimoCliente();
+            System.out.println("Cliente cadastrado com sucesso!");
+
+        }
+        System.out.print("Selecione seu restaurante ");
+        listarRestaurantes();
+        System.out.print("Identificador do Restaurante: ");
+        int identificadorRestaurante = scanner.nextInt();
+        scanner.nextLine();
+        if(restauranteService.validaRestaurante(identificadorRestaurante)){
+            Restaurante restaurante = restauranteService.buscarRestaurante(identificadorRestaurante);
+            List<Prato> pratos = restauranteService.findAllPratos(identificadorRestaurante);
+            pedidoService.addPedidos(restaurante,cliente);
+            while (true) {
+                System.out.println("Selecione o numero do prato a ser adicionado");
+                System.out.println("0. Finalizar Pedido");
+                if (pratos == null || pratos.isEmpty()) {
+                    System.out.println("Nenhum prato encontrado para o restaurante informado!");
+                    System.out.println();
+                } else {
+                    for (Prato prato : pratos) {
+                        System.out.println(prato.getNome() + ", R$" + prato.getPreco());
+                    }
+                }
+
+                System.out.print("Escolha uma opção: ");
+                int opcaoPrato = scanner.nextInt();
+                scanner.nextLine();
+                if (opcaoPrato > 0 && opcaoPrato < pratos.size() ) {
+                    Prato prato = restauranteService.buscarPrato(opcaoPrato,identificadorRestaurante);
+                    pedidoService.adicionarPrato(prato);
+                } else if (opcaoPrato == 0) {
+                    break;
+                } else {
+                    System.out.println("Opção inválida!");
+                }
+            }
+
+            System.out.println("Pedido realizado com sucesso!");
+        }
+
+    }
+
+
+    private void listarPedidosRestaurante(){
+        System.out.print("Selecione seu restaurante ");
+        listarRestaurantes();
+        System.out.print("Identificador do Restaurante: ");
+        int identificador = scanner.nextInt();
+        scanner.nextLine();
+        List<Pedido> pedidos = pedidoService.buscarPedidosRestaurantes(identificador);
+        for(Pedido pedido: pedidos){
+            System.out.print(pedido.toString());
+        }
+    }
+
+    private void verPedidosCliente(){
+        System.out.print("Selecione o cliente ");
+        listarClientes();
+        System.out.print("Identificador do Cliente: ");
+        int identificador = scanner.nextInt();
+        scanner.nextLine();
+        List<Pedido> pedidos = pedidoService.buscarPedidosClientes(identificador);
+        for(Pedido pedido: pedidos){
+            System.out.print(pedido.toString());
+        }
     }
 
 }

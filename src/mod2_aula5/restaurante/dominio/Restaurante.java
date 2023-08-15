@@ -9,14 +9,14 @@ public class Restaurante {
     private String nome;
     private String endereco;
     private List<Prato> pratosDisponiveis;
-    private List<Pedido> pedidos;
+
 
     public Restaurante(String nome, String endereco) {
         this.id = contadorRestaurante++;
         this.nome = nome;
         this.endereco = endereco;
         this.pratosDisponiveis = new ArrayList<>();
-        this.pedidos = new ArrayList<>();
+
     }
 
     public void adicionarPrato(Prato prato) {
@@ -24,18 +24,10 @@ public class Restaurante {
     }
 
 
-    public void receberPedido(Pedido pedido) {
-        pedidos.add(pedido);
-    }
-
-
     public List<Prato> getPratosDisponiveis() {
         return pratosDisponiveis;
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
 
     public int getId() {
         return id;
@@ -43,15 +35,10 @@ public class Restaurante {
 
     @Override
     public String toString() {
-        return "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", endereco='" + endereco;
+        return "#"+id +
+                ", nome='" + nome +
+                ", endereco=" + endereco;
     }
 
-    public String descricaoCompleta(){
-        return "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", endereco='" + endereco +
-                ", Pratos:" + pratosDisponiveis;
-    }
+
 }

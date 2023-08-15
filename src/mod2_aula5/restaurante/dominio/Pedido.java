@@ -44,6 +44,10 @@ public class Pedido {
         return cliente;
     }
 
+    public Restaurante getRestaurante() {
+        return restaurante;
+    }
+
     public List<Prato> getPratos() {
         return pratos;
     }
