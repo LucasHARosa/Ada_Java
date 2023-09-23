@@ -1,4 +1,4 @@
-package mod4.aula2;
+package mod4.aula1;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
